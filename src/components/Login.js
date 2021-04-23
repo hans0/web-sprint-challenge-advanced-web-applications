@@ -25,12 +25,15 @@ const Login = (props) => {
     });
     console.log(credentials);
   }
+
+  const [error, setError] = useState("");
+  //replace with error state
+
   const login = e => {
     e.preventDefault();
     axiosWithAuth()
       .post('/login', credentials)
       .then((res) => {
-        console.log(res);
         window.localStorage.setItem('token', JSON.stringify(res.data.payload));
         props.history.push('/bubbles')
       })
@@ -41,9 +44,6 @@ const Login = (props) => {
       })
     
   }
-
-  const [error, setError] = useState("");
-  //replace with error state
 
   return (
     <div>
