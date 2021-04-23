@@ -24,7 +24,6 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth()
       .put(`/colors/${colorToEdit.id}`, colorToEdit)
       .then((res) => {
-        // console.log(res);
         updateColors(
           colors.map(color => {
             if (color.id !== res.data.id){
@@ -37,7 +36,7 @@ const ColorList = ({ colors, updateColors }) => {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
 
   };
 
@@ -46,7 +45,6 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth()
       .delete(`/colors/${color.id}`)
       .then((res) => {
-        // console.log(res);
         updateColors(
           colors.filter(c => c.id != res.data)
         );

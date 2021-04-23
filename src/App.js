@@ -10,9 +10,8 @@ function App() {
   const history = useHistory();
 
   const logout = e => {
-    console.log('App.js logout');
     window.localStorage.removeItem('token');
-    history.push('/');
+    // history.push('/');
   }
 
   return (
