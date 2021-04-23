@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import BubblePage from "./components/BubblePage";
 import "./styles.scss";
 
-function App(props) {
+function App() {
+  const history = useHistory();
 
   const logout = e => {
     console.log('App.js logout');
     window.localStorage.removeItem('token');
-    // props.history.push('/login');
+    history.push('/');
   }
 
   return (
@@ -19,10 +20,11 @@ function App(props) {
       <div className="App">
         <header>
           Color Picker Sprint Challenge
-          <a data-testid="logoutButton" href="#" onClick={logout}>logout</a>
+          <a data-testid="logoutButton" href="/" onClick={logout}>logout</a>
         </header> 
 
-        <Route exact path="/" component={localStorage.getItem('token') ? Login: BubblePage} />
+        <Route exact path="/" component={Login} />
+        <Route path="/login" component={Login} />
         <PrivateRoute path="/bubbles" component={BubblePage} />
       </div>
     </Router>
